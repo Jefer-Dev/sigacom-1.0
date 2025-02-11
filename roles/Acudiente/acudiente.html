@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acudiente - Gestión Académica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .menu-option {
+            background-color: #d4edda; /* Verde claro */
+            border: 2px solid #28a745; /* Verde oscuro */
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        .menu-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu-icon {
+            font-size: 50px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Bienvenido, Acudiente</h1>
+        <p class="text-center">Accede a la información de tus hijos/as y mantente informado sobre las actividades del colegio.</p>
+        
+        <!-- Opciones principales -->
+        <div class="row justify-content-center g-4">
+            <!-- Información de hijos/as -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">👩‍👦</div>
+                    <h4>Información de Hijos/as</h4>
+                    <p>Consulta la información básica de tus hijos/as matriculados.</p>
+                    <a href="./child-info.html" class="btn btn-success" onclick="loadChildInfo()">Ver Información</a>
+                </div>
+            </div>
+            <!-- Calificaciones -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">📊</div>
+                    <h4>Calificaciones</h4>
+                    <p>Consulta las calificaciones y observaciones de tus hijos/as.</p>
+                    <a href="./child-grades.html" class="btn btn-success" onclick="loadGrades()">Ver Calificaciones</a>
+                </div>
+            </div>
+            <!-- Noticias -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">📰</div>
+                    <h4>Noticias</h4>
+                    <p>Mantente informado con las últimas noticias del colegio.</p>
+                    <a href="./guardian-news.html" class="btn btn-success" onclick="loadNews()">Ver Noticias</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección dinámica -->
+        <div id="dynamicSection" class="mt-5" style="display: none;">
+            <!-- Contenido dinámico cargado desde JavaScript -->
+        </div>
+    </div>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="../../bienvenida.html" class="btn btn-danger btn-sm mt-3">Cerrar Sesión</a>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

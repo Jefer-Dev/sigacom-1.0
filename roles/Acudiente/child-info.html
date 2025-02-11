@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de Hijos/as - Acudiente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            background-color: #d4edda; /* Verde claro */
+            border: 2px solid #28a745; /* Verde oscuro */
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .modal-header, .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Información de Hijos/as</h1>
+        <p class="text-center">Consulta la información básica de tus hijos/as y solicita cambios al administrador.</p>
+        
+        <!-- Tabla de Información de Hijos/as -->
+        <div class="table-container">
+            <h4>Datos de Hijos/as</h4>
+            <table class="table table-bordered">
+                <thead class="table-success">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Edad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="childTable">
+                    <!-- Filas dinámicas -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal para Solicitud de Edición -->
+        <div class="modal fade" id="editRequestModal" tabindex="-1" aria-labelledby="editRequestModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRequestModalLabel">Solicitud de Edición - Estudiante</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editRequestForm">
+                            <div class="mb-3">
+                                <label for="requestDetails" class="form-label">Detalles de la Solicitud</label>
+                                <textarea class="form-control" id="requestDetails" rows="4" placeholder="Escribe los cambios que deseas solicitar..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Enviar Solicitud</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="./acudiente.html" class="btn btn-primary btn-sm mt-3">Regresar</a>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulando datos de hijos/as
+        const childData = [
+            { id: 1, name: "Juan Pérez", course: "6° Grado", age: 12 },
+            { id: 2, name: "María Gómez", course: "5° Grado", age: 11 },
+        ];
+
+        // Cargar información de hijos/as
+        function loadChildData() {
+            const childTable = document.getElementById("childTable");
+            childTable.innerHTML = "";
+
+            childData.forEach((child, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${child.name}</td>
+                    <td>${child.course}</td>
+                    <td>${child.age}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="openEditRequestModal('${child.name}')">Solicitar Edición</button>
+                    </td>
+                `;
+                childTable.appendChild(row);
+            });
+        }
+
+        // Abrir modal para solicitud de edición
+        function openEditRequestModal(childName) {
+            const modal = new bootstrap.Modal(document.getElementById("editRequestModal"));
+            document.getElementById("editRequestModalLabel").textContent = `Solicitud de Edición - ${childName}`;
+            
+            // Limpiar formulario
+            document.getElementById("editRequestForm").onsubmit = function (e) {
+                e.preventDefault();
+                const requestDetails = document.getElementById("requestDetails").value;
+                if (requestDetails) {
+                    alert(`Solicitud enviada: "${requestDetails}"`);
+                    document.getElementById("requestDetails").value = "";
+                    modal.hide();
+                }
+            };
+
+            modal.show();
+        }
+
+        // Inicializar la página
+        window.onload = loadChildData;
+    </script>
+</body>
+</html>

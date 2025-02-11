@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Cursos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Gestionar Cursos</h1>
+        <!-- Formulario para Crear/Actualizar curso -->
+        <form class="mt-4">
+            <div class="mb-3">
+                <label for="courseName" class="form-label">Nombre del Curso</label>
+                <input type="text" class="form-control" id="courseName" placeholder="Ingrese el nombre del curso" required>
+            </div>
+            <div class="mb-3">
+                <label for="maxStudents" class="form-label">Máximo de Estudiantes</label>
+                <input type="number" class="form-control" id="maxStudents" placeholder="Ingrese el máximo de estudiantes" required>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar Curso</button>
+        </form>
+        <!-- Tabla de Cursos -->
+        <h2 class="mt-5">Lista de Cursos</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Máximo Estudiantes</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Matemáticas</td>
+                    <td>30</td>
+                    <td>
+                        <button class="btn btn-success btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="./administrador.html" class="btn btn-primary btn-sm mt-3">Regresar</a>
+    </div>
+    <br>
+    <br>
+</body>
+</html>
