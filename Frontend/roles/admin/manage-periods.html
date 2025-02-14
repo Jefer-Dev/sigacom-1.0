@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Períodos Académicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Gestionar Períodos Académicos</h1>
+        <!-- Formulario para Crear/Actualizar período -->
+        <form class="mt-4">
+            <div class="mb-3">
+                <label for="periodName" class="form-label">Nombre del Período</label>
+                <input type="text" class="form-control" id="periodName" placeholder="Ingrese el nombre del período" required>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar Período</button>
+        </form>
+        <!-- Tabla de Períodos -->
+        <h2 class="mt-5">Lista de Períodos</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Primer Semestre 2024</td>
+                    <td>
+                        <button class="btn btn-success btn-sm">Editar</button>
+                        <button class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="./administrador.html" class="btn btn-primary btn-sm mt-3">Regresar</a>
+    </div>
+    <br>
+    <br>
+</body>
+</html>

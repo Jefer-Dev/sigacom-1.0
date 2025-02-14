@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones - Acudiente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            background-color: #d4edda; /* Verde claro */
+            border: 2px solid #28a745; /* Verde oscuro */
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .modal-header, .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Calificaciones</h1>
+        <p class="text-center">Consulta todas las calificaciones por asignatura, grado o curso y revisa las observaciones del estudiante.</p>
+        
+        <!-- Filtros -->
+        <div class="table-container">
+            <h4>Filtrar Calificaciones</h4>
+            <form id="filterForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="childSelect" class="form-label">Selecciona Hijo/a</label>
+                        <select id="childSelect" class="form-select" required>
+                            <option value="" selected disabled>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="gradeSelect" class="form-label">Selecciona Curso</label>
+                        <select id="gradeSelect" class="form-select">
+                            <option value="all" selected>Todos</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="subjectSelect" class="form-label">Selecciona Asignatura</label>
+                        <select id="subjectSelect" class="form-select">
+                            <option value="all" selected>Todas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-success">Filtrar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla de Calificaciones -->
+        <div class="table-container mt-4">
+            <h4>Calificaciones</h4>
+            <table class="table table-bordered">
+                <thead class="table-success">
+                    <tr>
+                        <th>Asignatura</th>
+                        <th>Curso</th>
+                        <th>Calificación</th>
+                        <th>Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody id="gradesTable">
+                    <!-- Filas dinámicas -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="./acudiente.html" class="btn btn-primary btn-sm mt-3">Regresar</a>
+    </div>
+    <br>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulando datos del backend
+        const childData = [
+            { id: 1, name: "Juan Pérez", course: "6° Grado" },
+            { id: 2, name: "María Gómez", course: "5° Grado" },
+        ];
+
+        const gradesData = [
+            { childId: 1, subject: "Matemáticas", grade: 4.5, observations: ["Buen rendimiento"], course: "6° Grado" },
+            { childId: 1, subject: "Física", grade: 3.8, observations: ["Debe mejorar en problemas de movimiento"], course: "6° Grado" },
+            { childId: 2, subject: "Matemáticas", grade: 4.0, observations: ["Necesita reforzar ecuaciones"], course: "5° Grado" },
+        ];
+
+        // Cargar datos en los selectores
+        function loadFilters() {
+            const childSelect = document.getElementById("childSelect");
+            const gradeSelect = document.getElementById("gradeSelect");
+            const subjectSelect = document.getElementById("subjectSelect");
+
+            childData.forEach(child => {
+                childSelect.innerHTML += `<option value="${child.id}">${child.name}</option>`;
+            });
+
+            const uniqueCourses = [...new Set(childData.map(child => child.course))];
+            uniqueCourses.forEach(course => {
+                gradeSelect.innerHTML += `<option value="${course}">${course}</option>`;
+            });
+
+            const uniqueSubjects = [...new Set(gradesData.map(grade => grade.subject))];
+            uniqueSubjects.forEach(subject => {
+                subjectSelect.innerHTML += `<option value="${subject}">${subject}</option>`;
+            });
+        }
+
+        // Cargar calificaciones según filtros
+        function loadGrades(event) {
+            if (event) event.preventDefault();
+            
+            const selectedChildId = document.getElementById("childSelect").value;
+            const selectedGrade = document.getElementById("gradeSelect").value;
+            const selectedSubject = document.getElementById("subjectSelect").value;
+            const gradesTable = document.getElementById("gradesTable");
+
+            gradesTable.innerHTML = "";
+
+            const filteredGrades = gradesData.filter(grade => 
+                (!selectedChildId || grade.childId == selectedChildId) &&
+                (selectedGrade === "all" || grade.course === selectedGrade) &&
+                (selectedSubject === "all" || grade.subject === selectedSubject)
+            );
+
+            if (filteredGrades.length === 0) {
+                gradesTable.innerHTML = `<tr><td colspan="4" class="text-center">No hay calificaciones disponibles.</td></tr>`;
+            } else {
+                filteredGrades.forEach(grade => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${grade.subject}</td>
+                        <td>${grade.course}</td>
+                        <td>${grade.grade}</td>
+                        <td>
+                            <ul>
+                                ${grade.observations.map(obs => `<li>${obs}</li>`).join("")}
+                            </ul>
+                        </td>
+                    `;
+                    gradesTable.appendChild(row);
+                });
+            }
+        }
+
+        // Inicializar la página
+        window.onload = () => {
+            loadFilters();
+            document.getElementById("filterForm").addEventListener("submit", loadGrades);
+        };
+    </script>
+</body>
+</html>

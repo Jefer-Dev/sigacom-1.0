@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docente - Menú de Navegación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .menu-option {
+            background-color: #d4edda; /* Verde claro */
+            border: 2px solid #28a745; /* Verde oscuro */
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        .menu-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu-icon {
+            font-size: 50px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Bienvenido, Docente</h1>
+        <p class="text-center">Seleccione una de las opciones disponibles para gestionar sus tareas.</p>
+        
+        <div class="row justify-content-center g-4">
+            <!-- Cursos Asignados -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">📚</div>
+                    <h4>Cursos Asignados</h4>
+                    <p>Visualice y gestione observaciones de sus cursos asignados.</p>
+                    <a href="./my-courses.html" class="btn btn-success">Ir a Cursos Asignados</a>
+                </div>
+            </div>
+
+            <!-- Calificaciones -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">✏️</div>
+                    <h4>Calificaciones</h4>
+                    <p>Gestione calificaciones y observaciones de sus estudiantes.</p>
+                    <a href="./student-grades.html" class="btn btn-success">Ir a Calificaciones</a>
+                </div>
+            </div>
+
+            <!-- Asistencia -->
+            <div class="col-md-4">
+                <div class="menu-option text-center">
+                    <div class="menu-icon">✅</div>
+                    <h4>Asistencia</h4>
+                    <p>Registre y gestione la asistencia de sus estudiantes.</p>
+                    <a href="./attendance.html" class="btn btn-success">Ir a Asistencia</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <a href="../../bienvenida.html" class="btn btn-danger btn-sm mt-3">Cerrar Sesión</a>
+    </div>
+    <br>
+    <br>
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
